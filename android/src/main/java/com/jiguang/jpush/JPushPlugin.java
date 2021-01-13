@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 
+import cn.jiguang.api.JCoreInterface;
 import org.json.JSONObject;
 
 import cn.jpush.android.data.JPushLocalNotification;
@@ -139,6 +140,9 @@ public class JPushPlugin implements MethodCallHandler {
 
         HashMap<String, Object> map = call.arguments();
         boolean debug = (boolean)map.get("debug");
+        // 关闭拉起其他应用
+        JCoreInterface.setWakeEnable(registrar.context(), false);
+
         JPushInterface.setDebugMode(debug);
 
         JPushInterface.init(registrar.context());     		// 初始化 JPush
